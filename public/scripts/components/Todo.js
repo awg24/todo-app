@@ -10,7 +10,7 @@ module.exports = React.createClass({
 	request: function(){
 		var that = this;
 		console.log("ran")
-		axios.get("http://localhost:3000/users").then(function(response){
+		axios.get(window.location.origin + "/users").then(function(response){
 			console.log(response)
 			that.setState({test: response.data.test});
 		});
