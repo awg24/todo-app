@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Homemade+Apple|Leckerli+One');
+
+$brown: #EEB26B;
+$yellow: #FFF887;
+$blue: #E9EB9E;
+$brown: #77432B;
+$blackText: #352C2E;
+
+$font-nav: Leckerli One, cursive;
+$font-body: Homemade Apple, cursive;
+* {
+	box-sizing: border-box;
+}
+body {
+	margin: 0px;
+	background: $yellow;
+	color: $blackText;
+	font-family: $font-body;
+}
+.top-nav {
+	position: absolute;
+	top: 0;
+	width: 100%;
+	margin: 0;
+	color: white;
+	background: $brown;
+	font-family: $font-nav;
+	padding-right: 3%;
+	box-shadow: 0 2px 6px black;
+
+	.title {
+		float: left;
+
+		li {
+			list-style-type: none;
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.menu {
+		float: right;
+
+		li {
+			list-style-type: none;
+			a {
+				color: inherit;
+				text-decoration: none;
+			}
+		}
+	}
+}
+
+.view {
+	position: absolute;
+	padding: 15px;
+	top: 50px;
+	width: 100%;
+}

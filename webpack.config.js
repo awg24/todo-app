@@ -1,27 +1,20 @@
 module.exports = {
-
-	// This code will be compiled by webpack according to the babel specifications
-	entry: "./public/scripts/app.js",
-
-	// The plain compiled Javascript will be output into this file
-	output: {
-		filename: "public/bundle.js"
-	},
-
-
-	// This will be what we do
-	module: {
-		loaders: [
-			{
-				test: /\.jsx?$/,
-				exclude: /(node_moduled|bower_components)/,
-				loader: 'babel',
-				query: {
-					// These are the specific transformations we'll be using.
-					presets: ['react', 'es2015']
-				}
-			}
-		]
-	}
-
-}
+  devtool: 'inline-source-map',
+  entry : "./public",
+  output: {
+  		filename: "public/bundle.js"
+  	},
+  module: {
+    loaders:[
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        loaders: ['babel?presets[]=react,presets[]=es2015,presets[]=stage-2']
+      },
+      {
+        test: /\.scss$/,
+        loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ]
+      }
+    ]
+  }
+};

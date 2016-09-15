@@ -17,7 +17,7 @@ module.exports = React.createClass({
 	},
 	render: function(){
 		return (
-			<div className="row">
+			<div>
 				<button onClick={this.request}>Make Request</button>
 				{this.state.test}
 			</div>
