@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var User = require("./../models/User");
+var passport = require("./../auth/passport");
 
-/* GET users listing. */
-router.get('/login', function(req, res, next) {
+router.post('/login', function(req, res, next) {
 	var newUser = req.body;
 
 	var user = new User({
@@ -15,10 +15,28 @@ router.get('/login', function(req, res, next) {
 	});
 
 	user.save().then(function(user){
-		res.json({user});
+		res.json(user);
 	}).catch(function(err){
-		res.json(err);
-	})
+		if(err.code === 11000){
+			var dupe = err.errmsg.split("\"")[1];
+			return res.json({error: dupe + " already exists."});
+		}
+		var prop = Object.keys(err.errors)[0];
+		return res.json({message: err.errors[prop].message});
+
+	});
 });
+
+router.get('/auth/google',
+  	passport.authenticate('google', { scope: 'https://www.googleapis.com/auth/plus.login' })
+);
+
+router.get('/',
+  	passport.authenticate('google', {
+  		failureRedirect: '/'
+  	}),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 module.exports = router;

@@ -5,25 +5,29 @@ var isEmail = require('validator').isEmail;
 var UserSchema = new Schema({
   firstName:  {
   	type: String,
-  	required: true
+  	required: [true, "A first name must be provided."]
   },
   lastName: {
   	type: String,
-  	required: true
-  }
+  	required: [true, "A last name must be provided."]
+  },
   email:   {
   	type: String,
-  	required: true,
-  	validate: [isEmail, "An email address is required"]
+  	required: [true, "An email must be provided."],
+  	validate: [isEmail, "An email address is required"],
+  	index: true,
+  	unique: [true, ":email already exists."]
   },
   username: {
   	type: String,
-  	required: true
+  	required: [true, "A username must be provided."],
+  	index: true,
+  	unique: [true, ":username already exists."]
   },
   password: {
   	type: String,
-  	required: true,
-  	validate: [isLongEnough, "Password needs to be longer 8 or more characters."]
+  	required: [true, "A password must be provided."],
+  	validate: [isLongEnough, "Password needs to be 8 or more characters."]
   },
 
 });
