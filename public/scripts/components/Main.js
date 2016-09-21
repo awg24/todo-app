@@ -2,7 +2,14 @@ var React = require("react");
 var Link = require("react-router").Link;
 
 module.exports = React.createClass({
+	getInitialState: function(){
+		return {
+			loggedIn: false
+		};
+	},
+
 	render: function(){
+		console.log("is logged in?",this.state.loggedIn);
 		return (
 			<div>
 				<nav className="top-nav">
@@ -10,7 +17,7 @@ module.exports = React.createClass({
 						<li><Link to="/">My Todo</Link></li>
 					</ul>
 					<ul className="menu">
-						<li><Link to="/todo">Login</Link></li>
+						<li><Link to="/login">Login</Link></li>
 					</ul>
 				</nav>
 				<div className="view">

@@ -1,7 +1,7 @@
 var User = require("./../models/User");
 
 module.exports = function(app, passport){
-	app.post('/login', function(req, res) {
+	app.post('/login-notyet', function(req, res) {
 		var newUser = req.body;
 
 		var user = new User({
@@ -25,18 +25,21 @@ module.exports = function(app, passport){
 		});
 	});
 
+	app.get("/authorize", function(req, res){
+		res.header('Access-Control-Allow-Credentials', true);
+		if (req.isAuthenticated()){
+			return res.json({isAuthorized: true});
+		}
+		return res.json({isAuthorized: false});
+	});
+
 	app.get('/user/auth/google',
 	  	passport.authenticate('google', { scope: ['profile', 'email']})
 	);
 
-	app.get('/ballin', function(req, res){
-		console.log("running failed")
-		res.json({error: "ya done fucked up"})
-	});
-
 	app.get('/user/auth/google/callback', passport.authenticate('google',
 		{ failureRedirect : '/failed' }),
 		function(req, res){
-			res.json({error: "fuck you"});
+			res.redirect("/todo");
 	});
 }

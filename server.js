@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var passport = require("passport");
+var session = require('express-session');
 mongoose.Promise = Promise;
 var PORT = process.env.PORT || 3000;
 
@@ -16,10 +17,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+		secret: "skdhoiD@DS2442e"+ new Date(),
+		resave: true,
+		saveUninitialized: false
+	}));
+require("./auth/passport")(passport);
 app.use(passport.initialize());
-app.use(passport.session({ secret: "skdhoiD@DS2442e"+ new Date() }));
-require("./auth/passport")(passport)
-require("./routes/users")(app, passport)
+app.use(passport.session());
+require("./routes/users")(app, passport);
 
 app.get("*",function(req, res){
 	res.sendFile(path.join(__dirname, "./index.html"));
