@@ -4,7 +4,7 @@ var favicon = require('serve-favicon');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var passport = require("./auth/passport");
+var passport = require("passport");
 mongoose.Promise = Promise;
 var PORT = process.env.PORT || 3000;
 
@@ -18,9 +18,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 app.use(passport.session({ secret: "skdhoiD@DS2442e"+ new Date() }));
-
-
-app.use('/user', users);
+require("./auth/passport")(passport)
+require("./routes/users")(app, passport)
 
 app.get("*",function(req, res){
 	res.sendFile(path.join(__dirname, "./index.html"));

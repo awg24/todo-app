@@ -12,7 +12,8 @@ var container = document.getElementById("app");
 ReactDOM.render(
 	<Router history={browserHistory}>
 		<Route path="/" component={Main} >
-			<Route path="todo" component={Todo} />
+			<Route path="todo" component={Todo} >
+			</Route>
 		</Route>
   	</Router>,
   	container
