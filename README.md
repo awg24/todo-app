@@ -1,5 +1,5 @@
 # todo-app
-An overkill todo app, that will eventually sync to google calender!
+An overkill todo app, that will eventually sync to google!
 
 
 # start up
@@ -7,6 +7,3 @@ An overkill todo app, that will eventually sync to google calender!
 `npm install`
 
 `node server.js`
-
-
-view the iterations at `https://peaceful-escarpment-97825.herokuapp.com/`
