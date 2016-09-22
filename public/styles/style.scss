@@ -33,6 +33,7 @@ body {
 
 		li {
 			list-style-type: none;
+
 			a {
 				color: inherit;
 				text-decoration: none;
@@ -46,9 +47,15 @@ body {
 		li {
 			list-style-type: none;
 			a {
+				margin-left: 10px;
+				margin-right: 10px;
 				color: inherit;
 				text-decoration: none;
+				&:hover {
+					color: black;
+				}
 			}
+
 		}
 	}
 }
@@ -58,4 +65,8 @@ body {
 	padding: 15px;
 	top: 50px;
 	width: 100%;
+}
+
+.clickable {
+	cursor: pointer;
 }

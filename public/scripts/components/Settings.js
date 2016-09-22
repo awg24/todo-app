@@ -5,10 +5,7 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<input type="text"/>
-				<input type="password"/>
-				or
-				<a href={window.location.origin + "/user/auth/google"}>Sign in with Google</a>
+				I'm a settings page!
 			</div>
 		);
 	}

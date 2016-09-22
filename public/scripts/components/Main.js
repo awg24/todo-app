@@ -1,27 +1,52 @@
 var React = require("react");
 var Link = require("react-router").Link;
+var browserHistory = require("react-router").browserHistory;
+var axios = require("axios");
 
 module.exports = React.createClass({
 	getInitialState: function(){
 		return {
-			loggedIn: false
+			loggedIn: false,
 		};
 	},
-
+	componentDidMount: function(){
+		axios.get(window.location.origin + "/authorize", {withCredentials: true}).then(response => {
+			if(!response.data.isAuthorized){
+				browserHistory.push("/login");
+			}
+			this.setState({loggedIn: response.data.isAuthorized});
+		});
+	},
+	handleLogout: function(){
+		var that = this;
+		axios.get(window.location.origin + "/logout").then(response => {
+			this.setState({loggedIn: response.data.isAuthorized});
+			browserHistory.push("/login");
+		});
+	},
 	render: function(){
-		console.log("is logged in?",this.state.loggedIn);
 		return (
 			<div>
 				<nav className="top-nav">
 					<ul className="title">
-						<li><Link to="/">My Todo</Link></li>
+						<li><Link to={this.state.loggedIn ? "/todo" : "/login"}>My Todo</Link></li>
 					</ul>
 					<ul className="menu">
-						<li><Link to="/login">Login</Link></li>
+						<li>
+							{
+								this.state.loggedIn ?
+								([
+									<a key={1} className="clickable" onClick={this.handleLogout}>Logout</a>,
+									<Link key={2} to="/settings">Settings</Link>
+								])
+								:
+								(<Link to="/login">Login</Link>)
+							}
+						</li>
 					</ul>
 				</nav>
 				<div className="view">
-			 		{this.props.children}
+			 		{React.cloneElement(this.props.children, {loggedIn: this.state.loggedIn})}
 			 	</div>
 			</div>
 		);

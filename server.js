@@ -9,8 +9,6 @@ var session = require('express-session');
 mongoose.Promise = Promise;
 var PORT = process.env.PORT || 3000;
 
-var users = require('./routes/users');
-
 var app = express();
 
 app.use(bodyParser.json());

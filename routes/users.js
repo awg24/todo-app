@@ -33,6 +33,12 @@ module.exports = function(app, passport){
 		return res.json({isAuthorized: false});
 	});
 
+	app.get("/logout", function(req, res){
+		req.logout();
+		res.json({isAuthorized: req.isAuthenticated()});
+	});
+
+
 	app.get('/user/auth/google',
 	  	passport.authenticate('google', { scope: ['profile', 'email']})
 	);
