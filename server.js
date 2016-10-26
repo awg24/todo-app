@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var passport = require("passport");
 var session = require('express-session');
 var helmet = require('helmet');
+var todo = require("./routes/todo.js");
 mongoose.Promise = Promise;
 var PORT = process.env.PORT || 3000;
 
@@ -29,6 +30,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 require("./routes/users")(app, passport);
 
+app.use("/todos", todo);
 
 app.get("*", function(req, res) {
 	res.sendFile(path.join(__dirname, "./index.html"));

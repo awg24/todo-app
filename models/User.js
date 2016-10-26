@@ -28,7 +28,7 @@ var UserSchema = new Schema({
   	type: String,
   	required: [true, "A password must be provided."],
   	validate: [isLongEnough, "Password needs to be 8 or more characters."]
-  },
+  }
 
 });
 
