@@ -5,10 +5,15 @@ module.exports = React.createClass({
 	render: function(){
 		return (
 			<div>
-				<input type="text"/>
-				<input type="password"/>
-				or
-				<a href={window.location.origin + "/user/auth/google"}>Sign in with Google</a>
+				<div className="form">
+					<input placeholder="username" type="text"/>
+					<br/>
+					<input type="password" placeholder="password"/>
+					<br/><br/>
+					or
+					<br/><br/>
+				</div>
+				<a href={window.location.origin + "/user/auth/google"} title="Sign In With Google"></a>
 			</div>
 		);
 	}

@@ -9,7 +9,7 @@ module.exports = function(passport){
 	});
 
 	passport.deserializeUser(function(id, done) {
-	    User.findById(id, function(err, user) {
+	    User.findById(id).lean().exec(function(err, user) {
 	        done(err, user);
 	    });
 	});
@@ -33,7 +33,7 @@ module.exports = function(passport){
 		    			username: username,
 		    			firstName: firstName,
 		    			lastName: lastName,
-		    			password: accessToken
+		    			password: refreshToken
 		    		})
 		    		user.save().then(function(user){
 		    			return done(err, user);

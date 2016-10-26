@@ -1,0 +1,97 @@
+@import "https://fonts.googleapis.com/css?family=Raleway:700,400|Roboto+Slab:700";
+* {
+  box-sizing: border-box;
+  font-family: Raleway, sans-serif; }
+
+body {
+  margin: 0px;
+  background: #FFF887;
+  color: #352C2E;
+  font-family: Raleway, sans-serif; }
+
+.top-nav {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  color: white;
+  background: #77432B;
+  font-family: Roboto Slab, serif;
+  padding-right: 3%;
+  box-shadow: 0 2px 6px black; }
+  .top-nav .title {
+    float: left; }
+    .top-nav .title li {
+      list-style-type: none; }
+      .top-nav .title li a {
+        color: inherit;
+        text-decoration: none; }
+  .top-nav .menu {
+    float: right; }
+    .top-nav .menu li {
+      list-style-type: none; }
+      .top-nav .menu li a {
+        margin-left: 10px;
+        margin-right: 10px;
+        color: inherit;
+        text-decoration: none; }
+        .top-nav .menu li a:hover {
+          color: black; }
+
+.view {
+  position: absolute;
+  padding: 15px;
+  top: 50px;
+  width: 100%; }
+
+.form {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-top: 100px; }
+  .form > input {
+    width: 100%;
+    font-size: 25px;
+    background: #FFF887;
+    border: 0px;
+    border-bottom: 1px solid black; }
+    .form > input::-webkit-input-placeholder {
+      color: black;
+      font-family: Raleway, sans-serif; }
+    .form > input:focus {
+      outline: none; }
+
+div > a {
+  display: block;
+  width: 26%;
+  background-image: url("../images/google-sign.png");
+  height: 72px;
+  background-size: cover;
+  margin-right: auto;
+  margin-left: auto; }
+
+.clickable {
+  cursor: pointer; }
+
+@media (min-width: 320px) {
+  /* smartphones, iPhone, portrait 480x320 phones */ }
+@media (min-width: 481px) {
+  /* portrait e-readers (Nook/Kindle), smaller tablets @ 600 or @ 640 wide. */ }
+@media (min-width: 641px) {
+  /* portrait tablets, portrait iPad, landscape e-readers, landscape 800x480 or 854x480 phones */
+  .form {
+    width: 85%; } }
+@media (min-width: 961px) {
+  /* tablet, landscape iPad, lo-res laptops ands desktops */
+  .form {
+    width: 65%; } }
+@media (min-width: 1025px) {
+  /* big landscape tablets, laptops, and desktops */
+  .form {
+    width: 45%; } }
+@media (min-width: 1281px) {
+  /* hi-res laptops and desktops */
+  .form {
+    width: 35%; } }
+
+/*# sourceMappingURL=main.css.map */

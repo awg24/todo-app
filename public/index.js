@@ -1,4 +1,3 @@
-require("./styles/style.scss");
 
 var React = require("react");
 var ReactDOM = require("react-dom");
@@ -17,14 +16,14 @@ var NotFound = require("./scripts/components/NotFound");
 var container = document.getElementById("app");
 
 ReactDOM.render(
-	<Router history={browserHistory}>
-		<Route path="/" component={Main}>
-		 	<IndexRedirect to="/todo"/>
-			<Route path="/todo" component={Todo} />
-			<Route path="/settings" component={Settings} />
-			<Route path="/login" component={Login} />
-			<Route path="*" component={NotFound} />
-		</Route>
-  	</Router>,
-  	container
+    <Router history={browserHistory}>
+        <Route path="/" component={Main}>
+            <IndexRedirect to="/todo"/>
+            <Route path="/todo" component={Todo} />
+            <Route path="/settings" component={Settings} />
+            <Route path="/login" component={Login} />
+            <Route path="*" component={NotFound} />
+        </Route>
+    </Router>,
+    container
 );

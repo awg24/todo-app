@@ -10,10 +10,6 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         loaders: ['babel?presets[]=react,presets[]=es2015']
-      },
-      {
-        test: /\.scss$/,
-        loaders: [ 'style', 'css?sourceMap', 'sass?sourceMap' ]
       }
     ]
   }

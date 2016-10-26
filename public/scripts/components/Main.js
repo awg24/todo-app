@@ -3,24 +3,32 @@ var Link = require("react-router").Link;
 var browserHistory = require("react-router").browserHistory;
 var axios = require("axios");
 
+
 module.exports = React.createClass({
 	getInitialState: function(){
 		return {
 			loggedIn: false,
+			user: null
 		};
 	},
 	componentDidMount: function(){
 		axios.get(window.location.origin + "/authorize", {withCredentials: true}).then(response => {
 			if(!response.data.isAuthorized){
-				browserHistory.push("/login");
+				return browserHistory.push("/login");
 			}
-			this.setState({loggedIn: response.data.isAuthorized});
+			this.setState({
+				loggedIn: response.data.isAuthorized,
+				user: response.data.user
+			});
 		});
 	},
 	handleLogout: function(){
 		var that = this;
 		axios.get(window.location.origin + "/logout").then(response => {
-			this.setState({loggedIn: response.data.isAuthorized});
+			this.setState({
+				loggedIn: response.data.isAuthorized,
+				user: null
+			});
 			browserHistory.push("/login");
 		});
 	},
@@ -36,8 +44,8 @@ module.exports = React.createClass({
 							{
 								this.state.loggedIn ?
 								([
-									<a key={1} className="clickable" onClick={this.handleLogout}>Logout</a>,
-									<Link key={2} to="/settings">Settings</Link>
+									<Link key={2} to="/settings">Settings</Link>,
+									<a key={1} className="clickable" onClick={this.handleLogout}>Logout</a>
 								])
 								:
 								(<Link to="/login">Login</Link>)
