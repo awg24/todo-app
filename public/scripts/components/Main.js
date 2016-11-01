@@ -33,6 +33,7 @@ module.exports = React.createClass({
 		});
 	},
 	render: function(){
+
 		return (
 			<div>
 				<nav className="top-nav">
@@ -54,7 +55,7 @@ module.exports = React.createClass({
 					</ul>
 				</nav>
 				<div className="view">
-			 		{React.cloneElement(this.props.children, {loggedIn: this.state.loggedIn})}
+			 		{React.cloneElement(this.props.children, {loggedIn: this.state.loggedIn, user: this.state.user})}
 			 	</div>
 			</div>
 		);
