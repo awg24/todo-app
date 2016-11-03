@@ -19,14 +19,27 @@ module.exports = React.createClass({
 				});
 		}
 	},
+	updateItem: function(id, index){
+		console.log("called",id);
+	},
+	removeItem: function(id, index){
+		var that = this;
+		axios.delete(window.location.origin + "/todos/delete/"+ id)
+			.then(function(response){
+				var items = that.state.items.slice(0);
+				items.splice(index,1);
+				console.log(items);
+				that.setState({items: items});
+			})
+	},
 	componentDidMount: function() {
 		if(this.props.user){
 			this.getTasks(this.props.user._id);
 		}
 	},
 	mapItems: function(){
-		return this.state.items.map(function(item, index){
-			return <Item key={"item-"+index} task={item}/>
+		return this.state.items.map((item, index)=>{
+			return <Item key={"item-"+index} index={index} updateItem={this.updateItem} removeItem={this.removeItem} task={item}/>
 		});
 	},
 	componentWillReceiveProps: function(nextProps) {

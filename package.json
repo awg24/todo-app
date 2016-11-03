@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-  	"start": "pm-run-all --parallel serve build:js:dev build:css"
+  	"start": "npm-run-all --parallel serve build:js:dev build:css",
     "start:dev": "npm-run-all --parallel serve build:js:dev build:css",
     "start:prod": "npm-run-all --parallel serve build:js:prod build:css",
     "build:js:prod": "webpack --progress -w",
