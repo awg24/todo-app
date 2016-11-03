@@ -19,8 +19,15 @@ module.exports = React.createClass({
 				});
 		}
 	},
-	updateItem: function(id, index){
-		console.log("called",id);
+	updateItem: function(e, id, index, update){
+		e.preventDefault();
+		var that = this;
+		axios.patch(window.location.origin + "/todos/update/"+ id, {item: update})
+			.then(function(response){
+				var items = that.state.items.slice(0);
+				items.splice(index, 1, response.data)
+				that.setState({items: items});
+			});
 	},
 	removeItem: function(id, index){
 		var that = this;
@@ -30,7 +37,7 @@ module.exports = React.createClass({
 				items.splice(index,1);
 				console.log(items);
 				that.setState({items: items});
-			})
+			});
 	},
 	componentDidMount: function() {
 		if(this.props.user){
