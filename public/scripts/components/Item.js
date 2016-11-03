@@ -17,7 +17,7 @@ module.exports = React.createClass({
 				<form onSubmit={(e)=>{this.props.updateItem(e, this.props.task._id, this.props.index, this.state.item); this.triggerEdit();}}>
 					<input id="item" onChange={this.updateField} value={this.state.item} />
 				</form>
-			) : this.props.task.item;
+			) : this.state.item;
 	},
 	triggerEdit: function(){
 		this.setState({editMode: !this.state.editMode});
@@ -27,12 +27,20 @@ module.exports = React.createClass({
 		update[e.target.id] = e.target.value;
 		this.setState(update);
 	},
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({item: nextProps.task.item});
+	},
 	render: function(){
 		return (
 			<li>
 				{this.renderField()}
 				<button onClick={this.triggerEdit}>Update</button>
-				<button onClick={()=>{this.props.removeItem(this.props.task._id, this.props.index)}}>Delete</button>
+				<button onClick={()=>{
+					if(this.state.editMode){
+						this.triggerEdit();
+					}
+					this.props.removeItem(this.props.task._id, this.props.index)}
+				}>Delete</button>
 			</li>
 		);
 	}

@@ -35,7 +35,6 @@ module.exports = React.createClass({
 			.then(function(response){
 				var items = that.state.items.slice(0);
 				items.splice(index,1);
-				console.log(items);
 				that.setState({items: items});
 			});
 	},
