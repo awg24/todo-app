@@ -14,12 +14,12 @@ module.exports = React.createClass({
 	renderField: function(){
 		return this.state.editMode ?
 			(
-				<form onSubmit={(e)=>{this.props.updateItem(e, this.props.task._id, this.props.index, this.state.item); this.triggerEdit();}}>
+				<form onSubmit={(e)=>{this.props.updateItem(e, this.props.task._id, this.props.index, this.state.item); this.toggleEdit();}}>
 					<input id="item" onChange={this.updateField} value={this.state.item} />
 				</form>
 			) : this.state.item;
 	},
-	triggerEdit: function(){
+	toggleEdit: function(){
 		this.setState({editMode: !this.state.editMode});
 	},
 	updateField: function(e){
@@ -34,10 +34,10 @@ module.exports = React.createClass({
 		return (
 			<li>
 				{this.renderField()}
-				<button onClick={this.triggerEdit}>Update</button>
+				<button onClick={this.toggleEdit}>Update</button>
 				<button onClick={()=>{
 					if(this.state.editMode){
-						this.triggerEdit();
+						this.toggleEdit();
 					}
 					this.props.removeItem(this.props.task._id, this.props.index)}
 				}>Delete</button>
