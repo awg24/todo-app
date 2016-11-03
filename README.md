@@ -6,4 +6,6 @@ An overkill todo app, that will eventually sync to google!
 
 `npm install`
 
-`node server.js`
+`start up mongodb with mongod cmd`
+
+`npm start`
