@@ -19,10 +19,11 @@ module.exports = React.createClass({
 				});
 		}
 	},
-	updateItem: function(e, id, index, update){
+	updateItem: function(e, id, index, item, completed){
 		e.preventDefault();
 		var that = this;
-		axios.patch(window.location.origin + "/todos/update/"+ id, {item: update})
+		var toUpdate = {}
+		axios.patch(window.location.origin + "/todos/update/"+ id, {item: item, completed: completed})
 			.then(function(response){
 				var items = that.state.items.slice(0);
 				items.splice(index, 1, response.data)
@@ -49,7 +50,9 @@ module.exports = React.createClass({
 		});
 	},
 	componentWillReceiveProps: function(nextProps) {
-		this.getTasks(nextProps.user._id);
+		if(nextProps.user){
+			this.getTasks(nextProps.user._id);
+		}
 		if(nextProps.newTask){
 			this.setState({items: this.state.items.push(nextProps.newTask)});
 		}
